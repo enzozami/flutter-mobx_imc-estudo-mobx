@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:mobx_imc/observables/future/future_page.dart';
 // import 'package:mobx_imc/imc/imc_page.dart';
 // import 'package:mobx_imc/observables/list/observable_list_page.dart';
-import 'package:mobx_imc/observables/modelo_observado/modelo_observado_page.dart';
+// import 'package:mobx_imc/observables/modelo_observado/modelo_observado_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
       ),
       // home: ImcPage(), // utilizar para o IMC
       // home: ObservableListPage(),
-      home: ModeloObservadoPage(),
+      // home: ModeloObservadoPage(),
+      home: FuturePage(),
     );
   }
 }
