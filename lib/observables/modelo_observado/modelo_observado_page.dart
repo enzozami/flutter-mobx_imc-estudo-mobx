@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:mobx_imc/observables/observable_list_controller.dart';
+import 'package:mobx_imc/observables/modelo_observado/modelo_observado_controller.dart';
 
-class ObservableListPage extends StatefulWidget {
-  const ObservableListPage({super.key});
+class ModeloObservadoPage extends StatefulWidget {
+  const ModeloObservadoPage({super.key});
 
   @override
-  State<ObservableListPage> createState() => _ObservableListPageState();
+  State<ModeloObservadoPage> createState() => _ModeloObservadoPage();
 }
 
-class _ObservableListPageState extends State<ObservableListPage> {
-  final controller = ObservableListController();
+class _ModeloObservadoPage extends State<ModeloObservadoPage> {
+  final controller = ModeloObservadoController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Observable List'),
+        title: const Text('Modelo Observado Page'),
       ),
       body: Column(
         children: [
@@ -25,11 +25,15 @@ class _ObservableListPageState extends State<ObservableListPage> {
               return ListView.builder(
                 itemCount: controller.products.length,
                 itemBuilder: (context, index) {
-                  final productName = controller.products[index].name;
-                  return CheckboxListTile(
-                    value: false,
-                    onChanged: (_) {},
-                    title: Text(productName),
+                  final productStore = controller.products[index];
+                  return Observer(
+                    builder: (_) => CheckboxListTile(
+                      value: productStore.selectec,
+                      onChanged: (_) {
+                        controller.selectedProduct(index);
+                      },
+                      title: Text(productStore.product.name),
+                    ),
                   );
                 },
               );
